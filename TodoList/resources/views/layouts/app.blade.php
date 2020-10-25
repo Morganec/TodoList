@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ <script src="{{ asset('js/app.js') }}"></script>
 <html lang="en">
     <head>
         <title>Laravel Quickstart - Basic</title>
@@ -7,12 +8,12 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" id="app">
             <nav class="navbar navbar-default">
                 <!-- Navbar Contents -->
             </nav>
+                    @yield('content')
         </div>
 
-        @yield('content')
     </body>
 </html>
