@@ -22,9 +22,17 @@ Route::get('/', function () {
     ]);
 });
 
-Route::put('/task', function()
+Route::patch('/task', function($id, Request $request)
 {
-    //TODO
+
+$task = Task::where("id", $id)->update([
+            "name" => $request->name,
+            "isDone" => $request->isDone,
+            "description" => $request->description,
+            "dueDate" => $request->dueDate
+        ]);
+   return redirect('/');
+
 });
 
 Route::post('/task', function (Request $request) {

@@ -9,11 +9,7 @@
 
     <body>
         <div class="container" id="app">
-            <nav class="navbar navbar-default">
-                <!-- Navbar Contents -->
-            </nav>
                     @yield('content')
         </div>
-
     </body>
 </html>
