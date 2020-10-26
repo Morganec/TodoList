@@ -22,7 +22,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::patch('/task', function($id, Request $request)
+Route::put('/task/{id}', function($id, Request $request)
 {
 
 $task = Task::where("id", $id)->update([
@@ -31,7 +31,6 @@ $task = Task::where("id", $id)->update([
             "description" => $request->description,
             "dueDate" => $request->dueDate
         ]);
-   return redirect('/');
 
 });
 
