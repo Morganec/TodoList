@@ -22,6 +22,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::put('/task', function()
+{
+    //TODO
+});
 
 Route::post('/task', function (Request $request) {
     $task = new Task;
