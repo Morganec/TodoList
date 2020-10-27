@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Bootstrap Boilerplate... -->
-    <div class="panel-body">
-    @foreach ($tasks as $task)
-        <task :task="{{$task}}"></task>
-    @endforeach
+
+
+
+
+        <div class="mt-4">
+
   <form action="/task" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <!-- Task Name -->
@@ -21,6 +22,7 @@
                     </button>
             </div>
         </form>
-    </div>
 
+
+</div>
 @endsection

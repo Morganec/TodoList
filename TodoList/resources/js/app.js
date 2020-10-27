@@ -7,6 +7,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 require('./bootstrap');
 
@@ -25,7 +27,8 @@ Vue.use(VueRouter)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.component('task', require('./components/Task.vue').default);
+//Vue.component('task', require('./components/Task.vue').default);
+Vue.component('task-list', require('./components/TaskList.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
