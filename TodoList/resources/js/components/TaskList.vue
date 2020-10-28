@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <span class="task-list-title">Mes tâches</span>
+        <div class="row title"><span class="task-list-title">Mes tâches</span></div>
 
         <div class="row todayTask">
-            <div class="col">
+            <div class="col-12">
                 <div class="row"><span>Aujourd'hui</span></div>
                 <span class="row" v-if="thisWeekTaskList.length === 0">Vous n'avez pas de tâche pour aujourd'Hui</span>
-                <div v-else class="row">
-                    <task-component v-for="task in todayTaskList" :key="task.id" :task="task"></task-component>
+                <div v-else class="row" v-for="task in todayTaskList" :key="task.id">
+                    <task-component  :task="task"></task-component><br/>
                 </div>
             </div>
         </div>
@@ -17,8 +17,8 @@
                 <div class="row">
                     <span>Cette semaine</span></div>
             <span class="row" v-if="thisWeekTaskList.length === 0">Vous n'avez pas de tâche pour cette semaine</span>
-            <div v-else class="row">
-                <task-component v-for="task in thisWeekTaskList" :key="task.id" :task="task"></task-component>
+            <div v-else class="row" v-for="task in thisWeekTaskList" :key="task.id">
+                <task-component  :task="task"></task-component><br/>
             </div></div>
         </div>
 
@@ -27,8 +27,8 @@
                 <div class="row">
                     <span>Ce mois</span></div>
             <span class="row" v-if="thisMonthTaskList.length === 0">Vous n'avez pas de tâche pour ce mois</span>
-            <div v-else class="row">
-                <task-component v-for="task in thisMonthTaskList" :key="task.id" :task="task"></task-component>
+            <div v-else class="row" v-for="task in thisMonthTaskList" :key="task.id" >
+                <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
 
@@ -37,8 +37,8 @@
                 <div class="row">
                     <span>Plus tard</span></div>
             <span class="row" v-if="dueLaterTaslList.length === 0">Vous n'avez pas de tâche pour plus tard</span>
-            <div v-else class="row">
-                <task-component v-for="task in dueLaterTaslList" :key="task.id" :task="task"></task-component>
+            <div v-else class="row" v-for="task in dueLaterTaslList" :key="task.id" >
+                <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
 
@@ -47,8 +47,8 @@
                 <div class="row">
                     <span>En retard</span></div>
             <span class="row" v-if="lateTaskList.length === 0">Vous n'avez pas de tâche en retard</span>
-            <div v-else class="row">
-                <task-component v-for="task in lateTaskList" :key="task.id" :task="task"></task-component>
+            <div v-else class="row" v-for="task in lateTaskList" :key="task.id" >
+                <task-component :task="task"></task-component>
             </div>
                 </div>
         </div>
@@ -58,8 +58,8 @@
                 <div class="row">
                     <span>Pas de date de fin</span></div>
             <span class="row" v-if="noDueDateTaskList.length === 0">Vous n'avez pas de tâche sans dueDate</span>
-            <div v-else class="row">
-                <task-component v-for="task in noDueDateTaskList" :key="task.id" :task="task"></task-component>
+            <div v-else class="row"  v-for="task in noDueDateTaskList" :key="task.id">
+                <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
 
@@ -141,6 +141,9 @@ export default {
     color: #252525;
     font-size: 20px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    .col {
+        witdth: 100%;
+    }
 }
 
 </style>

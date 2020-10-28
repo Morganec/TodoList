@@ -8,8 +8,8 @@
     </head>
 
     <body>
-        <div class="container" id="app">
-                    <task-list :task-list="{{$tasks}}"></task-list>
+        <div  id="app">
+            <task-list :task-list="{{$tasks}}"></task-list>
  @yield('content')
         </div>
     </body>
