@@ -66,7 +66,9 @@ export default {
         'task.isDone' : function(){
             console.log('test')
             this.$nextTick(() => {
-                this.updateTask()
+                if (!this.isEdited) {
+                    this.updateTask()
+                }
             })
         }
     },
