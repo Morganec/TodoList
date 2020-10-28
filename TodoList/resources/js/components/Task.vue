@@ -1,17 +1,17 @@
 <template>
     <div class="col">
-        <div class="row task-container align-items-center" v-if="!isEdited">
+        <div class="row task-container align-items-center" v-if="!isEdited" @click="(e) => openEditTask(e)">
             <div class="col align-self-center">
                 <div class="row my-auto align-items-center">
                     <div class="col align-self-center">
-                        <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheckPrinted' + copyTask.id"> <label :for="'isDoneCheckPrinted' + copyTask.id" class="ml-2">{{copyTask.name}}</label>
+                        <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheckPrinted' + copyTask.id"> <label :for="'isDoneCheckPrinted' + copyTask.id" class="ml-2 labelCheckPrinted">{{copyTask.name}}</label>
                     </div>
                 </div>
 
             </div>
             <div class="col d-flex justify-content-end">
                 <div class="row">
-                    <button  @click="openEditTask(copyTask.id)" type="button" class="task-button task-edit">
+                    <button  @click="(e) =>openEditTask(e)" type="button" class="task-button task-edit">
                         <i class="fas fa-pen mr-1"></i> Modifier
                     </button>
                     <button  @click="deleteTask(copyTask.id)" type="button" class="task-button task-delete">
@@ -110,8 +110,10 @@ export default {
                     console.log(error);
                 })
         },
-        openEditTask(id) {
-            this.isEdited= true
+        openEditTask(event) {
+            if (!(event.target.classList.contains('checkBox')) && !(event.target.classList.contains('labelCheckPrinted')) ) {
+                this.isEdited= true
+            }
         },
         cancelEditTask() {
             this.copyTask = this.task
@@ -127,6 +129,12 @@ export default {
     border-radius: 5px ;
     margin: 5px;
     font-size: 18px;
+    background-color: white;
+    transition: padding 0.4s ease;
+    &:hover {
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
     .task-button {
         padding: 6px;
         color: white;

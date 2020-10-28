@@ -6815,8 +6815,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    openEditTask: function openEditTask(id) {
-      this.isEdited = true;
+    openEditTask: function openEditTask(event) {
+      if (!event.target.classList.contains('checkBox') && !event.target.classList.contains('labelCheckPrinted')) {
+        this.isEdited = true;
+      }
     },
     cancelEditTask: function cancelEditTask() {
       this.copyTask = this.task;
@@ -11500,7 +11502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 18px;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container input[type=checkbox][data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 18px;\n  background-color: white;\n  transition: padding 0.4s ease;\n}\n.task-container[data-v-e9a53c20]:hover {\n  background-color: #f9f9f9;\n  cursor: pointer;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container input[type=checkbox][data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}", ""]);
 
 // exports
 
@@ -43573,105 +43575,120 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col" }, [
     !_vm.isEdited
-      ? _c("div", { staticClass: "row task-container align-items-center" }, [
-          _c("div", { staticClass: "col align-self-center" }, [
-            _c("div", { staticClass: "row my-auto align-items-center" }, [
-              _c("div", { staticClass: "col align-self-center" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.copyTask.isDone,
-                      expression: "copyTask.isDone"
-                    }
-                  ],
-                  staticClass: "checkBox",
-                  attrs: {
-                    type: "checkbox",
-                    id: "isDoneCheckPrinted" + _vm.copyTask.id
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.copyTask.isDone)
-                      ? _vm._i(_vm.copyTask.isDone, null) > -1
-                      : _vm.copyTask.isDone
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.copyTask.isDone,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(_vm.copyTask, "isDone", $$a.concat([$$v]))
+      ? _c(
+          "div",
+          {
+            staticClass: "row task-container align-items-center",
+            on: {
+              click: function(e) {
+                return _vm.openEditTask(e)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "col align-self-center" }, [
+              _c("div", { staticClass: "row my-auto align-items-center" }, [
+                _c("div", { staticClass: "col align-self-center" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.copyTask.isDone,
+                        expression: "copyTask.isDone"
+                      }
+                    ],
+                    staticClass: "checkBox",
+                    attrs: {
+                      type: "checkbox",
+                      id: "isDoneCheckPrinted" + _vm.copyTask.id
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.copyTask.isDone)
+                        ? _vm._i(_vm.copyTask.isDone, null) > -1
+                        : _vm.copyTask.isDone
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.copyTask.isDone,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.copyTask,
+                                "isDone",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.copyTask,
+                                "isDone",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
                         } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.copyTask,
-                              "isDone",
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
+                          _vm.$set(_vm.copyTask, "isDone", $$c)
                         }
-                      } else {
-                        _vm.$set(_vm.copyTask, "isDone", $$c)
                       }
                     }
-                  }
-                }),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "ml-2 labelCheckPrinted",
+                      attrs: { for: "isDoneCheckPrinted" + _vm.copyTask.id }
+                    },
+                    [_vm._v(_vm._s(_vm.copyTask.name))]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col d-flex justify-content-end" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "task-button task-edit",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function(e) {
+                        return _vm.openEditTask(e)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-pen mr-1" }),
+                    _vm._v(" Modifier\n                ")
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
-                  "label",
+                  "button",
                   {
-                    staticClass: "ml-2",
-                    attrs: { for: "isDoneCheckPrinted" + _vm.copyTask.id }
+                    staticClass: "task-button task-delete",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteTask(_vm.copyTask.id)
+                      }
+                    }
                   },
-                  [_vm._v(_vm._s(_vm.copyTask.name))]
+                  [
+                    _c("i", { staticClass: "fas fa-trash mr-1" }),
+                    _vm._v("Supprimer\n                ")
+                  ]
                 )
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col d-flex justify-content-end" }, [
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "task-button task-edit",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.openEditTask(_vm.copyTask.id)
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-pen mr-1" }),
-                  _vm._v(" Modifier\n                ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "task-button task-delete",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteTask(_vm.copyTask.id)
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-trash mr-1" }),
-                  _vm._v("Supprimer\n                ")
-                ]
-              )
-            ])
-          ])
-        ])
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _vm.isEdited
