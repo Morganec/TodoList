@@ -6769,16 +6769,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      isEdited: false
+      isEdited: false,
+      copyTask: _.cloneDeep(this.task)
     };
   },
   watch: {
-    'task.isDone': function taskIsDone() {
+    'copyTask.isDone': function copyTaskIsDone() {
       var _this = this;
 
       console.log('test');
       this.$nextTick(function () {
-        _this.updateTask();
+        if (!_this.isEdited) {
+          _this.updateTask();
+        }
       });
     }
   },
@@ -6800,12 +6803,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var taskObject = {
-        name: this.task.name,
-        dueDate: this.task.dueDate,
-        isDone: this.task.isDone
+        name: this.copyTask.name,
+        dueDate: this.copyTask.dueDate,
+        isDone: this.copyTask.isDone
       };
       console.log('taskObject', taskObject);
-      axios.put('/task/' + this.task.id, taskObject).then(function (resp) {
+      axios.put('/task/' + this.copyTask.id, taskObject).then(function (resp) {
         console.log(resp);
         _this2.isEdited = false;
       })["catch"](function (error) {
@@ -6816,6 +6819,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isEdited = true;
     },
     cancelEditTask: function cancelEditTask() {
+      this.copyTask = this.task;
       this.isEdited = false;
     }
   }
@@ -43578,20 +43582,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.task.isDone,
-                      expression: "task.isDone"
+                      value: _vm.copyTask.isDone,
+                      expression: "copyTask.isDone"
                     }
                   ],
                   staticClass: "checkBox",
-                  attrs: { type: "checkbox", id: "isDoneCheckPrinted" },
+                  attrs: {
+                    type: "checkbox",
+                    id: "isDoneCheckPrinted" + _vm.copyTask.id
+                  },
                   domProps: {
-                    checked: Array.isArray(_vm.task.isDone)
-                      ? _vm._i(_vm.task.isDone, null) > -1
-                      : _vm.task.isDone
+                    checked: Array.isArray(_vm.copyTask.isDone)
+                      ? _vm._i(_vm.copyTask.isDone, null) > -1
+                      : _vm.copyTask.isDone
                   },
                   on: {
                     change: function($event) {
-                      var $$a = _vm.task.isDone,
+                      var $$a = _vm.copyTask.isDone,
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
@@ -43599,25 +43606,30 @@ var render = function() {
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
-                            _vm.$set(_vm.task, "isDone", $$a.concat([$$v]))
+                            _vm.$set(_vm.copyTask, "isDone", $$a.concat([$$v]))
                         } else {
                           $$i > -1 &&
                             _vm.$set(
-                              _vm.task,
+                              _vm.copyTask,
                               "isDone",
                               $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                             )
                         }
                       } else {
-                        _vm.$set(_vm.task, "isDone", $$c)
+                        _vm.$set(_vm.copyTask, "isDone", $$c)
                       }
                     }
                   }
                 }),
                 _vm._v(" "),
-                _c("span", { staticClass: "ml-2" }, [
-                  _vm._v(_vm._s(_vm.task.name))
-                ])
+                _c(
+                  "label",
+                  {
+                    staticClass: "ml-2",
+                    attrs: { for: "isDoneCheckPrinted" + _vm.copyTask.id }
+                  },
+                  [_vm._v(_vm._s(_vm.copyTask.name))]
+                )
               ])
             ])
           ]),
@@ -43631,7 +43643,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.openEditTask(_vm.task.id)
+                      return _vm.openEditTask(_vm.copyTask.id)
                     }
                   }
                 },
@@ -43648,7 +43660,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.deleteTask(_vm.task.id)
+                      return _vm.deleteTask(_vm.copyTask.id)
                     }
                   }
                 },
@@ -43673,20 +43685,23 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.task.isDone,
-                        expression: "task.isDone"
+                        value: _vm.copyTask.isDone,
+                        expression: "copyTask.isDone"
                       }
                     ],
                     staticClass: "checkBox",
-                    attrs: { type: "checkbox", id: "isDoneCheckPrinted" },
+                    attrs: {
+                      type: "checkbox",
+                      id: "isDoneCheck" + _vm.copyTask.id
+                    },
                     domProps: {
-                      checked: Array.isArray(_vm.task.isDone)
-                        ? _vm._i(_vm.task.isDone, null) > -1
-                        : _vm.task.isDone
+                      checked: Array.isArray(_vm.copyTask.isDone)
+                        ? _vm._i(_vm.copyTask.isDone, null) > -1
+                        : _vm.copyTask.isDone
                     },
                     on: {
                       change: function($event) {
-                        var $$a = _vm.task.isDone,
+                        var $$a = _vm.copyTask.isDone,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
@@ -43694,25 +43709,34 @@ var render = function() {
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
                             $$i < 0 &&
-                              _vm.$set(_vm.task, "isDone", $$a.concat([$$v]))
+                              _vm.$set(
+                                _vm.copyTask,
+                                "isDone",
+                                $$a.concat([$$v])
+                              )
                           } else {
                             $$i > -1 &&
                               _vm.$set(
-                                _vm.task,
+                                _vm.copyTask,
                                 "isDone",
                                 $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                               )
                           }
                         } else {
-                          _vm.$set(_vm.task, "isDone", $$c)
+                          _vm.$set(_vm.copyTask, "isDone", $$c)
                         }
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _c("span", { staticClass: "ml-2" }, [
-                    _vm._v("C'est terminé ! ")
-                  ])
+                  _c(
+                    "label",
+                    {
+                      staticClass: "ml-2",
+                      attrs: { for: "isDoneCheck" + _vm.copyTask.id }
+                    },
+                    [_vm._v("C'est terminé ! ")]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col form-group" }, [
@@ -43723,19 +43747,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.task.name,
-                        expression: "task.name"
+                        value: _vm.copyTask.name,
+                        expression: "copyTask.name"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: { id: "taskName", placeholder: "Enter name" },
-                    domProps: { value: _vm.task.name },
+                    domProps: { value: _vm.copyTask.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.task, "name", $event.target.value)
+                        _vm.$set(_vm.copyTask, "name", $event.target.value)
                       }
                     }
                   })
@@ -43752,7 +43776,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    return _vm.cancelEditTask(_vm.task.id)
+                    return _vm.cancelEditTask()
                   }
                 }
               },

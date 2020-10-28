@@ -4,17 +4,17 @@
             <div class="col align-self-center">
                 <div class="row my-auto align-items-center">
                     <div class="col align-self-center">
-                        <input v-model="task.isDone" type="checkbox" class="checkBox" id="isDoneCheckPrinted"> <span class="ml-2">{{task.name}}</span>
+                        <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheckPrinted' + copyTask.id"> <label :for="'isDoneCheckPrinted' + copyTask.id" class="ml-2">{{copyTask.name}}</label>
                     </div>
                 </div>
 
             </div>
             <div class="col d-flex justify-content-end">
                 <div class="row">
-                    <button  @click="openEditTask(task.id)" type="button" class="task-button task-edit">
+                    <button  @click="openEditTask(copyTask.id)" type="button" class="task-button task-edit">
                         <i class="fas fa-pen mr-1"></i> Modifier
                     </button>
-                    <button  @click="deleteTask(task.id)" type="button" class="task-button task-delete">
+                    <button  @click="deleteTask(copyTask.id)" type="button" class="task-button task-delete">
                         <i class="fas fa-trash mr-1"></i>Supprimer
                     </button>
                 </div>
@@ -25,17 +25,17 @@
                     <form>
                         <div class="row align-items-center">
                             <div class="col form-check">
-                                <input v-model="task.isDone" type="checkbox" class="checkBox" id="isDoneCheckPrinted"> <span class="ml-2">C'est terminé ! </span>
+                                <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheck' + copyTask.id"> <label :for="'isDoneCheck' + copyTask.id" class="ml-2">C'est terminé ! </label>
                             </div>
                             <div class="col form-group">
                                 <label for="taskName">Name</label>
-                                <input  v-model="task.name" class="form-control" id="taskName" placeholder="Enter name">
+                                <input  v-model="copyTask.name" class="form-control" id="taskName" placeholder="Enter name">
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col d-flex justify-content-end">
-                    <button   @click="cancelEditTask(task.id)" type="button" class="task-button task-cancel">
+                    <button   @click="cancelEditTask()" type="button" class="task-button task-cancel">
                         <i class="fas fa-times mr-1"></i> Annuler
                     </button>
                     <button @click="updateTask()" type="button" class="task-button task-save">
@@ -59,11 +59,12 @@ export default {
     },
     data() {
         return {
-            isEdited: false
+            isEdited: false,
+            copyTask: _.cloneDeep(this.task)
         }
     },
     watch: {
-        'task.isDone' : function(){
+        'copyTask.isDone' : function(){
             console.log('test')
             this.$nextTick(() => {
                 if (!this.isEdited) {
@@ -93,12 +94,12 @@ export default {
         },
         updateTask() {
             let taskObject = {
-                name: this.task.name,
-                dueDate: this.task.dueDate,
-                isDone: this.task.isDone
+                name: this.copyTask.name,
+                dueDate: this.copyTask.dueDate,
+                isDone: this.copyTask.isDone
             }
             console.log('taskObject',taskObject)
-            axios.put('/task/'+this.task.id,
+            axios.put('/task/'+this.copyTask.id,
                taskObject
                 )
                 .then(resp => {
@@ -113,6 +114,7 @@ export default {
             this.isEdited= true
         },
         cancelEditTask() {
+            this.copyTask = this.task
             this.isEdited = false
         }
     }
