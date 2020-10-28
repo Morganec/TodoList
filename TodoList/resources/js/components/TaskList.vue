@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center title"><span class="task-list-title">Mes tâches</span>
             <button @click="showModal()" type="button" class="task-button-create">
-                <i class="fas fa-check mr-1"></i> Add
+                <i class="fas fa-plus mr-1"></i>Ajouter un tâche
             </button>
         </div>
         <div class="row todayTask" v-if="!(thisWeekTaskList.length === 0)">
@@ -169,6 +169,7 @@ export default {
     }
 }
 .task-button-create {
+    padding: 6px;
     color: white;
     border: solid 1px transparent;
     border-radius: 10px;

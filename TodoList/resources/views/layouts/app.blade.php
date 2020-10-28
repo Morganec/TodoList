@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <div  id="app">
+        <div class="mt-2" id="app">
             <task-list :task-list="{{$tasks}}"></task-list>
         </div>
     </body>

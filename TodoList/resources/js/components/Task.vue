@@ -28,7 +28,7 @@
                                 <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheck' + copyTask.id"> <label :for="'isDoneCheck' + copyTask.id" class="ml-2">C'est terminé ! </label>
                             </div>
                             <div class="col form-group">
-                                <label for="taskName">Name</label>
+                                <label for="taskName" class="labelInputName">Name</label>
                                 <input  v-model="copyTask.name" class="form-control" id="taskName" placeholder="Enter name">
                             </div>
                         </div>
@@ -197,6 +197,10 @@ export default {
         position: absolute;
         top: -10px;
         left: 1px
+    }
+    .labelInputName {
+        margin-bottom: 0;
+        margin-top: 0.5rem;
     }
 
 }

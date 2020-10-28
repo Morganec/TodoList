@@ -11502,7 +11502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 18px;\n  background-color: white;\n  transition: padding 0.4s ease;\n}\n.task-container[data-v-e9a53c20]:hover {\n  background-color: #f9f9f9;\n  cursor: pointer;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container input[type=checkbox][data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 18px;\n  background-color: white;\n  transition: padding 0.4s ease;\n}\n.task-container[data-v-e9a53c20]:hover {\n  background-color: #f9f9f9;\n  cursor: pointer;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container input[type=checkbox][data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}\n.task-container .labelInputName[data-v-e9a53c20] {\n  margin-bottom: 0;\n  margin-top: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -11521,7 +11521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container[data-v-0afd8bae] {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n.task-list-title[data-v-0afd8bae] {\n  color: #252525;\n  font-size: 20px;\n  font-weight: bold;\n}\n.task-list-title .col[data-v-0afd8bae] {\n  witdth: 100%;\n}\n.task-button-create[data-v-0afd8bae] {\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n  background-color: #87b452;\n}\n.task-button-create[data-v-0afd8bae]:hover, .task-button-create[data-v-0afd8bae]:active {\n  background-color: #6c9041;\n}", ""]);
+exports.push([module.i, ".container[data-v-0afd8bae] {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n.task-list-title[data-v-0afd8bae] {\n  color: #252525;\n  font-size: 20px;\n  font-weight: bold;\n}\n.task-list-title .col[data-v-0afd8bae] {\n  witdth: 100%;\n}\n.task-button-create[data-v-0afd8bae] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n  background-color: #87b452;\n}\n.task-button-create[data-v-0afd8bae]:hover, .task-button-create[data-v-0afd8bae]:active {\n  background-color: #6c9041;\n}", ""]);
 
 // exports
 
@@ -43757,7 +43757,14 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col form-group" }, [
-                  _c("label", { attrs: { for: "taskName" } }, [_vm._v("Name")]),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "labelInputName",
+                      attrs: { for: "taskName" }
+                    },
+                    [_vm._v("Name")]
+                  ),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -43865,8 +43872,8 @@ var render = function() {
             }
           },
           [
-            _c("i", { staticClass: "fas fa-check mr-1" }),
-            _vm._v(" Add\n        ")
+            _c("i", { staticClass: "fas fa-plus mr-1" }),
+            _vm._v("Ajouter un tâche\n        ")
           ]
         )
       ]),
