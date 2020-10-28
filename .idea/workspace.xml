@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="966dd2a2-6649-4074-b1c3-acea380dcde2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/TodoList.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/public/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/resources/js/components/CreateTaskModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TodoList/resources/js/components/Task.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/database/migrations/2020_10_25_001557_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList/database/migrations/2020_10_25_001557_create_tasks_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/resources/js/components/TaskList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList/resources/js/components/TaskList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TodoList/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/TodoList/routes/web.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jNHkXVw19wJtaTGCeVKgAVUVZk" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="966dd2a2-6649-4074-b1c3-acea380dcde2" name="Default Changelist" comment="" />
+      <created>1603637773263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603637773263</updated>
+      <workItem from="1603637774446" duration="9687000" />
+      <workItem from="1603744941799" duration="9105000" />
+      <workItem from="1603913546312" duration="4957000" />
+      <workItem from="1603918693284" duration="3209000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="981" y="490" width="682" height="490" key="find.popup" timestamp="1603759015324">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="981" y="475" width="598" height="490" key="find.popup/2560.499.1920.1080/0.0.2560.1440/-1680.739.1680.1050@0.0.2560.1440" timestamp="1603673876640" />
+    <state x="981" y="490" width="682" height="490" key="find.popup/2560.522.1920.1057/0.23.2560.1417/-1680.762.1680.1027@0.23.2560.1417" timestamp="1603759015324" />
+  </component>
+</project>

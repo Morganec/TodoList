@@ -10,7 +10,6 @@
     <body>
         <div  id="app">
             <task-list :task-list="{{$tasks}}"></task-list>
- @yield('content')
         </div>
     </body>
 </html>

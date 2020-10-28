@@ -9,7 +9,7 @@ import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-
+export const bus = new Vue();
 require('./bootstrap');
 
 window.Vue = require('vue');

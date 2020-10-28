@@ -28,7 +28,6 @@ Route::put('/task/{id}', function($id, Request $request)
 $task = Task::where("id", $id)->update([
             "name" => $request->name,
             "isDone" => $request->isDone,
-            "description" => $request->description,
             "dueDate" => $request->dueDate
         ]);
 

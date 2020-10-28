@@ -1,8 +1,11 @@
 <template>
     <div class="container">
-        <div class="row title"><span class="task-list-title">Mes tâches</span></div>
-
-        <div class="row todayTask">
+        <div class="row align-items-center title"><span class="task-list-title">Mes tâches</span>
+            <button @click="showModal()" type="button" class="task-button-create">
+                <i class="fas fa-check mr-1"></i> Add
+            </button>
+        </div>
+        <div class="row todayTask" v-if="!(thisWeekTaskList.length === 0)">
             <div class="col-12">
                 <div class="row"><span>Aujourd'hui</span></div>
                 <span class="row" v-if="thisWeekTaskList.length === 0">Vous n'avez pas de tâche pour aujourd'Hui</span>
@@ -12,7 +15,7 @@
             </div>
         </div>
 
-        <div class="row thisWeekTask">
+        <div class="row thisWeekTask"  v-if="!thisWeekTaskList.length === 0">
             <div class="col">
                 <div class="row">
                     <span>Cette semaine</span></div>
@@ -22,7 +25,7 @@
             </div></div>
         </div>
 
-        <div class="row thisMonth">
+        <div class="row thisMonth" v-if="!(thisMonthTaskList.length === 0)">
             <div class="col">
                 <div class="row">
                     <span>Ce mois</span></div>
@@ -32,7 +35,7 @@
             </div></div>
         </div>
 
-        <div class="row dueLater">
+        <div class="row dueLater" v-if="!(dueLaterTaslList.length === 0)">
             <div class="col">
                 <div class="row">
                     <span>Plus tard</span></div>
@@ -42,7 +45,7 @@
             </div></div>
         </div>
 
-        <div class="row late">
+        <div class="row late" v-if="!(lateTaskList.length === 0)">
             <div class="col">
                 <div class="row">
                     <span>En retard</span></div>
@@ -53,25 +56,28 @@
                 </div>
         </div>
 
-        <div class="row dueDate">
+        <div class="row dueDate"  v-if="!(noDueDateTaskList.length === 0)">
             <div class="col">
                 <div class="row">
                     <span>Pas de date de fin</span></div>
             <span class="row" v-if="noDueDateTaskList.length === 0">Vous n'avez pas de tâche sans dueDate</span>
-            <div v-else class="row"  v-for="task in noDueDateTaskList" :key="task.id">
+            <div  class="row"  v-for="task in noDueDateTaskList" :key="task.id">
                 <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
 
-
+        <create-task-modal v-if="isModalShowing" ></create-task-modal>
     </div>
 </template>
 <script>
 import taskComponent from './Task.vue'
+import CreateTaskModal from './CreateTaskModal'
+import {bus} from "../app";
 export default {
     name: 'TaskList',
     components: {
-        taskComponent
+        taskComponent,
+        CreateTaskModal
     },
     props: {
         taskList: {
@@ -87,15 +93,20 @@ export default {
             thisMonthTaskList: [],
             noDueDateTaskList: [],
             dueLaterTaslList: [],
-            lateTaskList:[]
+            lateTaskList:[],
+            isModalShowing: false
         }
     },
     computed: {
 
     },
+    beforeDestroy() {
+        bus.$off('taskAdded', this.addTaskInList)
+    },
     created() {
         console.log(this.taskList)
         this.fillAllSortedTaskList()
+        bus.$on('taskAdded', this.addTaskInList)
     },
     methods: {
         fillAllSortedTaskList() {
@@ -103,7 +114,16 @@ export default {
                 this.addTaskInList(task)
             })
         },
+        showModal() {
+            this.isModalShowing = true
+            this.$nextTick(()=> {
+                $('#createTaskModal').modal('show');
+            })
+        },
         addTaskInList(task) {
+            if (this.isModalShowing) {
+                this.isModalShowing = false
+            }
             if (!task.dueDate) {
                 this.noDueDateTaskList.push(task)
             } else {
@@ -137,12 +157,25 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+.container {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .task-list-title {
     color: #252525;
     font-size: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
     .col {
         witdth: 100%;
+    }
+}
+.task-button-create {
+    color: white;
+    border: solid 1px transparent;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #87b452;
+    &:hover, &:active {
+        background-color: #6c9041;
     }
 }
 
