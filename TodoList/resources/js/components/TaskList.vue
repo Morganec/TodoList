@@ -2,14 +2,13 @@
     <div class="container">
         <div class="row align-items-center title"><span class="task-list-title">Mes tâches</span>
             <button @click="showModal()" type="button" class="task-button-create">
-                <i class="fas fa-plus mr-1"></i>Ajouter un tâche
+                <i class="fas fa-plus mr-1"></i>Ajouter une tâche
             </button>
         </div>
         <div class="row todayTask" v-if="!(todayTaskList.length === 0)">
             <div class="col-12">
-                <div class="row"><span>Aujourd'hui</span></div>
-                <span class="row" v-if="todayTaskList.length === 0">Vous n'avez pas de tâche pour aujourd'Hui</span>
-                <div v-else class="row" v-for="task in todayTaskList" :key="task.id">
+                <div class="row"><span>Tâches d'aujourd'hui</span></div>
+                <div  class="row" v-for="task in todayTaskList" :key="task.id">
                     <task-component  :task="task"></task-component><br/>
                 </div>
             </div>
@@ -18,9 +17,9 @@
         <div class="row thisWeekTask"  v-if="!(thisWeekTaskList.length === 0)">
             <div class="col">
                 <div class="row">
-                    <span>Cette semaine</span></div>
-            <span class="row" v-if="thisWeekTaskList.length === 0">Vous n'avez pas de tâche pour cette semaine</span>
-            <div v-else class="row" v-for="task in thisWeekTaskList" :key="task.id">
+                    <span>Tâches de cette semaine</span></div>
+            <div
+                class="row" v-for="task in thisWeekTaskList" :key="task.id">
                 <task-component  :task="task"></task-component><br/>
             </div></div>
         </div>
@@ -28,9 +27,8 @@
         <div class="row thisMonth" v-if="!(thisMonthTaskList.length === 0)">
             <div class="col">
                 <div class="row">
-                    <span>Ce mois</span></div>
-            <span class="row" v-if="thisMonthTaskList.length === 0">Vous n'avez pas de tâche pour ce mois</span>
-            <div v-else class="row" v-for="task in thisMonthTaskList" :key="task.id" >
+                    <span>Tâches de ce mois</span></div>
+            <div  class="row" v-for="task in thisMonthTaskList" :key="task.id" >
                 <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
@@ -39,8 +37,7 @@
             <div class="col">
                 <div class="row">
                     <span>Plus tard</span></div>
-            <span class="row" v-if="dueLaterTaslList.length === 0">Vous n'avez pas de tâche pour plus tard</span>
-            <div v-else class="row" v-for="task in dueLaterTaslList" :key="task.id" >
+            <div class="row" v-for="task in dueLaterTaslList" :key="task.id" >
                 <task-component :task="task"></task-component><br/>
             </div></div>
         </div>
@@ -49,8 +46,7 @@
             <div class="col">
                 <div class="row">
                     <span><i class="fas fa-exclamation-triangle mr-1 "></i>Tâches en retard</span></div>
-            <span class="row" v-if="lateTaskList.length === 0">Vous n'avez pas de tâche en retard</span>
-            <div v-else class="row" v-for="task in lateTaskList" :key="task.id" >
+            <div class="row" v-for="task in lateTaskList" :key="task.id" >
                 <task-component :task="task"></task-component>
             </div>
                 </div>
@@ -59,8 +55,7 @@
         <div class="row dueDate"  v-if="!(noDueDateTaskList.length === 0)">
             <div class="col">
                 <div class="row">
-                    <span>Pas de date de fin</span></div>
-            <span class="row" v-if="noDueDateTaskList.length === 0">Vous n'avez pas de tâche sans dueDate</span>
+                    <span>Pas de date de fin pour ces tâches</span></div>
             <div  class="row"  v-for="task in noDueDateTaskList" :key="task.id">
                 <task-component :task="task"></task-component><br/>
             </div></div>
@@ -144,7 +139,7 @@ export default {
                             this.lateTaskList.splice(index, 1)
                         }
                         break;
-                    case (dueDate.getTime() === todayDate.getTime()) :
+                    case ((dueDate.getFullYear() === todayDate.getFullYear()) && (dueDate.getMonth() === todayDate.getMonth())  && (dueDate.getDate() === todayDate.getDate())) :
                         index = this.todayTaskList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
                             this.todayTaskList.splice(index, 1)
@@ -189,7 +184,7 @@ export default {
                     case (dueDate < todayDate) :
                         this.lateTaskList.push(task)
                         break;
-                    case (dueDate === todayDate) :
+                    case ((dueDate.getFullYear() === todayDate.getFullYear()) && (dueDate.getMonth() === todayDate.getMonth())  && (dueDate.getDate() === todayDate.getDate())) :
                         this.todayTaskList.push(task)
                         break;
                     case (dueDate < dateInOneWeek):

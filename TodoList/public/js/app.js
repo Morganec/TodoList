@@ -6953,11 +6953,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -7042,7 +7037,7 @@ __webpack_require__.r(__webpack_exports__);
 
             break;
 
-          case dueDate.getTime() === todayDate.getTime():
+          case dueDate.getFullYear() === todayDate.getFullYear() && dueDate.getMonth() === todayDate.getMonth() && dueDate.getDate() === todayDate.getDate():
             index = this.todayTaskList.findIndex(function (task) {
               return task.id === oldTask.id;
             });
@@ -7110,7 +7105,7 @@ __webpack_require__.r(__webpack_exports__);
             this.lateTaskList.push(task);
             break;
 
-          case dueDate === todayDate:
+          case dueDate.getFullYear() === todayDate.getFullYear() && dueDate.getMonth() === todayDate.getMonth() && dueDate.getDate() === todayDate.getDate():
             this.todayTaskList.push(task);
             break;
 
@@ -43645,16 +43640,16 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-footer col" }, [
+          _c("div", { staticClass: "modal-footer " }, [
             _vm.buttonIsDisable
-              ? _c("div", { staticClass: "row  spanRequiredField" }, [
+              ? _c("div", { staticClass: " spanRequiredField" }, [
                   _vm._v(
                     '\n                    Le champs "nom" ne peux être vide\n                '
                   )
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "row " }, [
+            _c("div", { staticClass: " " }, [
               _vm._m(1),
               _vm._v(" "),
               _c(
@@ -44105,7 +44100,7 @@ var render = function() {
           },
           [
             _c("i", { staticClass: "fas fa-plus mr-1" }),
-            _vm._v("Ajouter un tâche\n        ")
+            _vm._v("Ajouter une tâche\n        ")
           ]
         )
       ]),
@@ -44118,21 +44113,14 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _vm.todayTaskList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche pour aujourd'Hui")
-                    ])
-                  : _vm._l(_vm.todayTaskList, function(task) {
-                      return _c(
-                        "div",
-                        { key: task.id, staticClass: "row" },
-                        [
-                          _c("task-component", { attrs: { task: task } }),
-                          _c("br")
-                        ],
-                        1
-                      )
-                    })
+                _vm._l(_vm.todayTaskList, function(task) {
+                  return _c(
+                    "div",
+                    { key: task.id, staticClass: "row" },
+                    [_c("task-component", { attrs: { task: task } }), _c("br")],
+                    1
+                  )
+                })
               ],
               2
             )
@@ -44147,21 +44135,14 @@ var render = function() {
               [
                 _vm._m(1),
                 _vm._v(" "),
-                _vm.thisWeekTaskList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche pour cette semaine")
-                    ])
-                  : _vm._l(_vm.thisWeekTaskList, function(task) {
-                      return _c(
-                        "div",
-                        { key: task.id, staticClass: "row" },
-                        [
-                          _c("task-component", { attrs: { task: task } }),
-                          _c("br")
-                        ],
-                        1
-                      )
-                    })
+                _vm._l(_vm.thisWeekTaskList, function(task) {
+                  return _c(
+                    "div",
+                    { key: task.id, staticClass: "row" },
+                    [_c("task-component", { attrs: { task: task } }), _c("br")],
+                    1
+                  )
+                })
               ],
               2
             )
@@ -44176,21 +44157,14 @@ var render = function() {
               [
                 _vm._m(2),
                 _vm._v(" "),
-                _vm.thisMonthTaskList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche pour ce mois")
-                    ])
-                  : _vm._l(_vm.thisMonthTaskList, function(task) {
-                      return _c(
-                        "div",
-                        { key: task.id, staticClass: "row" },
-                        [
-                          _c("task-component", { attrs: { task: task } }),
-                          _c("br")
-                        ],
-                        1
-                      )
-                    })
+                _vm._l(_vm.thisMonthTaskList, function(task) {
+                  return _c(
+                    "div",
+                    { key: task.id, staticClass: "row" },
+                    [_c("task-component", { attrs: { task: task } }), _c("br")],
+                    1
+                  )
+                })
               ],
               2
             )
@@ -44205,21 +44179,14 @@ var render = function() {
               [
                 _vm._m(3),
                 _vm._v(" "),
-                _vm.dueLaterTaslList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche pour plus tard")
-                    ])
-                  : _vm._l(_vm.dueLaterTaslList, function(task) {
-                      return _c(
-                        "div",
-                        { key: task.id, staticClass: "row" },
-                        [
-                          _c("task-component", { attrs: { task: task } }),
-                          _c("br")
-                        ],
-                        1
-                      )
-                    })
+                _vm._l(_vm.dueLaterTaslList, function(task) {
+                  return _c(
+                    "div",
+                    { key: task.id, staticClass: "row" },
+                    [_c("task-component", { attrs: { task: task } }), _c("br")],
+                    1
+                  )
+                })
               ],
               2
             )
@@ -44234,18 +44201,14 @@ var render = function() {
               [
                 _vm._m(4),
                 _vm._v(" "),
-                _vm.lateTaskList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche en retard")
-                    ])
-                  : _vm._l(_vm.lateTaskList, function(task) {
-                      return _c(
-                        "div",
-                        { key: task.id, staticClass: "row" },
-                        [_c("task-component", { attrs: { task: task } })],
-                        1
-                      )
-                    })
+                _vm._l(_vm.lateTaskList, function(task) {
+                  return _c(
+                    "div",
+                    { key: task.id, staticClass: "row" },
+                    [_c("task-component", { attrs: { task: task } })],
+                    1
+                  )
+                })
               ],
               2
             )
@@ -44259,12 +44222,6 @@ var render = function() {
               { staticClass: "col" },
               [
                 _vm._m(5),
-                _vm._v(" "),
-                _vm.noDueDateTaskList.length === 0
-                  ? _c("span", { staticClass: "row" }, [
-                      _vm._v("Vous n'avez pas de tâche sans dueDate")
-                    ])
-                  : _vm._e(),
                 _vm._v(" "),
                 _vm._l(_vm.noDueDateTaskList, function(task) {
                   return _c(
@@ -44291,7 +44248,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("span", [_vm._v("Aujourd'hui")])
+      _c("span", [_vm._v("Tâches d'aujourd'hui")])
     ])
   },
   function() {
@@ -44299,14 +44256,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("span", [_vm._v("Cette semaine")])
+      _c("span", [_vm._v("Tâches de cette semaine")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("span", [_vm._v("Ce mois")])])
+    return _c("div", { staticClass: "row" }, [
+      _c("span", [_vm._v("Tâches de ce mois")])
+    ])
   },
   function() {
     var _vm = this
@@ -44332,7 +44291,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("span", [_vm._v("Pas de date de fin")])
+      _c("span", [_vm._v("Pas de date de fin pour ces tâches")])
     ])
   }
 ]
