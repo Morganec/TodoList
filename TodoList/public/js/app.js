@@ -6948,14 +6948,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      typeTimeConstant: {
-        today: 'today',
-        thisWeek: 'thisWeek',
-        thisMonth: 'thisMonth',
-        noDueDate: 'noDueDate',
-        late: 'late',
-        dueLater: 'dueLater'
-      },
       todayTaskList: [],
       thisWeekTaskList: [],
       thisMonthTaskList: [],
@@ -6991,53 +6983,83 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateList: function updateList(oldTask, newTask) {
-      /* let index = -1
-       if (!oldTask.dueDate) {
-           index = this.noDueDateTaskList.findIndex((task) => task.id === oldTask.id)
-           if (index !== -1) {
-               this.noDueDateTaskList.slice(index, 1)
-           }
-       } else {
-           let dueDate = new Date(oldTask.dueDate)
-           dueDate = new Date(dueDate.getFullYear(),dueDate.getMonth() , dueDate.getDate())
-           let newDate = new Date()
-           let todayDate = new Date(newDate.getFullYear(),newDate.getMonth() , newDate.getDate())
-           let dateInOneWeek = newDate.setDate(newDate.getDate() + 7);
-           let dateInOneMonth = newDate.setDate(newDate.getMonth() + 1);
-           switch (true) {
-               case (dueDate < todayDate) :
-                   index = this.lateTaskList.findIndex((task) => task.id === oldTask.id)
-                   if (index !== -1) {
-                       this.lateTaskList.slice(index, 1)
-                   }
-                   break;
-               case (dueDate === todayDate) :
-                   index = this.todayTaskList.findIndex((task) => task.id === oldTask.id)
-                   if (index !== -1) {
-                       this.todayTaskList.slice(index, 1)
-                   }
-                   break;
-               case (dueDate < dateInOneWeek):
-                   index = this.thisWeekTaskList.findIndex((task) => task.id === oldTask.id)
-                   if (index !== -1) {
-                       this.thisWeekTaskList.slice(index, 1)
-                   }
-                   break;
-               case (dueDate < dateInOneMonth) :
-                   index = this.thisMonthTaskList.findIndex((task) => task.id === oldTask.id)
-                   if (index !== -1) {
-                       this.thisMonthTaskList.slice(index, 1)
-                   }
-                   break;
-               default:
-                   index = this.dueLaterTaslList.findIndex((task) => task.id === oldTask.id)
-                   if (index !== -1) {
-                       this.dueLaterTaslList.slice(index, 1)
-                   }
-                   break;
-           }
-       }
-       this.addTaskInList(newTask)*/
+      var index = -1;
+
+      if (!oldTask.dueDate) {
+        index = this.noDueDateTaskList.findIndex(function (task) {
+          return task.id === oldTask.id;
+        });
+
+        if (index !== -1) {
+          this.noDueDateTaskList.splice(index, 1);
+        }
+      } else {
+        var dueDate = new Date(oldTask.dueDate);
+        dueDate = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());
+        var newDate = new Date();
+        var todayDate = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
+        var dateInOneWeek = newDate.setDate(newDate.getDate() + 7);
+        var dateInOneMonth = newDate.setDate(newDate.getMonth() + 1);
+
+        switch (true) {
+          case dueDate < todayDate:
+            index = this.lateTaskList.findIndex(function (task) {
+              return task.id === oldTask.id;
+            });
+
+            if (index !== -1) {
+              this.lateTaskList.splice(index, 1);
+            }
+
+            break;
+
+          case dueDate.getTime() === todayDate.getTime():
+            index = this.todayTaskList.findIndex(function (task) {
+              return task.id === oldTask.id;
+            });
+
+            if (index !== -1) {
+              this.todayTaskList.splice(index, 1);
+            }
+
+            break;
+
+          case dueDate < dateInOneWeek:
+            index = this.thisWeekTaskList.findIndex(function (task) {
+              return task.id === oldTask.id;
+            });
+
+            if (index !== -1) {
+              this.thisWeekTaskList.splice(index, 1);
+            }
+
+            break;
+
+          case dueDate < dateInOneMonth:
+            index = this.thisMonthTaskList.findIndex(function (task) {
+              return task.id === oldTask.id;
+            });
+
+            if (index !== -1) {
+              this.thisMonthTaskList.splice(index, 1);
+            }
+
+            break;
+
+          default:
+            index = this.dueLaterTaslList.findIndex(function (task) {
+              return task.id === oldTask.id;
+            });
+
+            if (index !== -1) {
+              this.dueLaterTaslList.splice(index, 1);
+            }
+
+            break;
+        }
+      }
+
+      this.addTaskInList(newTask);
     },
     addTaskInList: function addTaskInList(task) {
       if (this.isModalShowing) {
@@ -44002,7 +44024,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      !(_vm.thisWeekTaskList.length === 0)
+      !(_vm.todayTaskList.length === 0)
         ? _c("div", { staticClass: "row todayTask" }, [
             _c(
               "div",
@@ -44010,7 +44032,7 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _vm.thisWeekTaskList.length === 0
+                _vm.todayTaskList.length === 0
                   ? _c("span", { staticClass: "row" }, [
                       _vm._v("Vous n'avez pas de tâche pour aujourd'Hui")
                     ])
@@ -44031,7 +44053,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      !_vm.thisWeekTaskList.length === 0
+      !(_vm.thisWeekTaskList.length === 0)
         ? _c("div", { staticClass: "row thisWeekTask" }, [
             _c(
               "div",

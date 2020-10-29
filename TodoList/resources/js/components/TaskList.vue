@@ -5,17 +5,17 @@
                 <i class="fas fa-plus mr-1"></i>Ajouter un tâche
             </button>
         </div>
-        <div class="row todayTask" v-if="!(thisWeekTaskList.length === 0)">
+        <div class="row todayTask" v-if="!(todayTaskList.length === 0)">
             <div class="col-12">
                 <div class="row"><span>Aujourd'hui</span></div>
-                <span class="row" v-if="thisWeekTaskList.length === 0">Vous n'avez pas de tâche pour aujourd'Hui</span>
+                <span class="row" v-if="todayTaskList.length === 0">Vous n'avez pas de tâche pour aujourd'Hui</span>
                 <div v-else class="row" v-for="task in todayTaskList" :key="task.id">
                     <task-component  :task="task"></task-component><br/>
                 </div>
             </div>
         </div>
 
-        <div class="row thisWeekTask"  v-if="!thisWeekTaskList.length === 0">
+        <div class="row thisWeekTask"  v-if="!(thisWeekTaskList.length === 0)">
             <div class="col">
                 <div class="row">
                     <span>Cette semaine</span></div>
@@ -87,7 +87,6 @@ export default {
     },
     data() {
         return {
-            typeTimeConstant: {today:'today', thisWeek:'thisWeek', thisMonth:'thisMonth', noDueDate:'noDueDate', late:'late', dueLater:'dueLater'},
             todayTaskList: [],
             thisWeekTaskList: [],
             thisMonthTaskList: [],
@@ -124,11 +123,12 @@ export default {
             })
         },
         updateList(oldTask, newTask){
-           /* let index = -1
+           let index = -1
             if (!oldTask.dueDate) {
+
                 index = this.noDueDateTaskList.findIndex((task) => task.id === oldTask.id)
                 if (index !== -1) {
-                    this.noDueDateTaskList.slice(index, 1)
+                    this.noDueDateTaskList.splice(index, 1)
                 }
             } else {
                 let dueDate = new Date(oldTask.dueDate)
@@ -141,36 +141,36 @@ export default {
                     case (dueDate < todayDate) :
                         index = this.lateTaskList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
-                            this.lateTaskList.slice(index, 1)
+                            this.lateTaskList.splice(index, 1)
                         }
                         break;
-                    case (dueDate === todayDate) :
+                    case (dueDate.getTime() === todayDate.getTime()) :
                         index = this.todayTaskList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
-                            this.todayTaskList.slice(index, 1)
+                            this.todayTaskList.splice(index, 1)
                         }
                         break;
                     case (dueDate < dateInOneWeek):
                         index = this.thisWeekTaskList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
-                            this.thisWeekTaskList.slice(index, 1)
+                            this.thisWeekTaskList.splice(index, 1)
                         }
                         break;
                     case (dueDate < dateInOneMonth) :
                         index = this.thisMonthTaskList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
-                            this.thisMonthTaskList.slice(index, 1)
+                            this.thisMonthTaskList.splice(index, 1)
                         }
                         break;
                     default:
                         index = this.dueLaterTaslList.findIndex((task) => task.id === oldTask.id)
                         if (index !== -1) {
-                            this.dueLaterTaslList.slice(index, 1)
+                            this.dueLaterTaslList.splice(index, 1)
                         }
                         break;
                 }
             }
-            this.addTaskInList(newTask)*/
+            this.addTaskInList(newTask)
         },
         addTaskInList(task) {
             if (this.isModalShowing) {
