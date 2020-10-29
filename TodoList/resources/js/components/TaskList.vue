@@ -5,6 +5,18 @@
                 <i class="fas fa-plus mr-1"></i>Ajouter une tâche
             </button>
         </div>
+
+        <div class="row late" v-if="!(lateTaskList.length === 0)">
+            <div class="col">
+                <div class="row">
+                    <span><i class="fas fa-exclamation-triangle mr-1 "></i>Tâches en retard</span></div>
+                <div class="row" v-for="task in lateTaskList" :key="task.id" >
+                    <task-component :task="task"></task-component>
+                </div>
+            </div>
+        </div>
+
+
         <div class="row todayTask" v-if="!(todayTaskList.length === 0)">
             <div class="col-12">
                 <div class="row"><span>Tâches d'aujourd'hui</span></div>
@@ -40,16 +52,6 @@
             <div class="row" v-for="task in dueLaterTaslList" :key="task.id" >
                 <task-component :task="task"></task-component><br/>
             </div></div>
-        </div>
-
-        <div class="row late" v-if="!(lateTaskList.length === 0)">
-            <div class="col">
-                <div class="row">
-                    <span><i class="fas fa-exclamation-triangle mr-1 "></i>Tâches en retard</span></div>
-            <div class="row" v-for="task in lateTaskList" :key="task.id" >
-                <task-component :task="task"></task-component>
-            </div>
-                </div>
         </div>
 
         <div class="row dueDate"  v-if="!(noDueDateTaskList.length === 0)">
