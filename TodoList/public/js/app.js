@@ -6678,6 +6678,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreateTaskModal',
@@ -6689,10 +6694,19 @@ __webpack_require__.r(__webpack_exports__);
         isDone: false,
         name: null,
         dueDate: null
-      }
+      },
+      isNameEmpty: false
     };
   },
-  computed: {},
+  computed: {
+    buttonIsDisable: function buttonIsDisable() {
+      if (!this.task.name) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   created: function created() {},
   methods: {
     addTask: function addTask() {
@@ -6720,6 +6734,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6799,7 +6824,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  computed: {},
+  computed: {
+    printedDueDate: function printedDueDate() {
+      var taskDueDate = new Date(this.copyTask.dueDate);
+      return taskDueDate.getDate() + "/" + (taskDueDate.getMonth() + 1) + "/" + taskDueDate.getFullYear();
+    }
+  },
   created: function created() {},
   methods: {
     deleteTask: function deleteTask(id) {
@@ -6821,7 +6851,6 @@ __webpack_require__.r(__webpack_exports__);
         dueDate: this.copyTask.dueDate,
         isDone: this.copyTask.isDone
       };
-      console.log('taskObject', taskObject);
       axios.put('/task/' + this.copyTask.id, taskObject).then(function (resp) {
         if (_this2.copyTask.dueDate !== _this2.task.dueDate) {
           _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('taskDateUpdated', _this2.task, _this2.copyTask);
@@ -11573,7 +11602,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".task-button[data-v-040840f1] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-cancel[data-v-040840f1] {\n  background-color: #a0a0a0;\n}\n.task-cancel[data-v-040840f1]:hover, .task-cancel[data-v-040840f1]:active {\n  background-color: #808080;\n}\n.task-save[data-v-040840f1] {\n  background-color: #87b452;\n}\n.task-save[data-v-040840f1]:hover, .task-save[data-v-040840f1]:active {\n  background-color: #6c9041;\n}", ""]);
+exports.push([module.i, ".task-button[data-v-040840f1] {\n  padding: 6px;\n  color: white;\n  border: solid 1px transparent;\n  border-radius: 10px;\n  margin: 5px;\n}\n.task-cancel[data-v-040840f1] {\n  background-color: #a0a0a0;\n}\n.task-cancel[data-v-040840f1]:hover, .task-cancel[data-v-040840f1]:active {\n  background-color: #808080;\n}\n.task-save[data-v-040840f1]:enabled {\n  background-color: #87b452;\n}\n.task-save[data-v-040840f1]:enabled:hover:enabled, .task-save[data-v-040840f1]:enabled:active:enabled {\n  background-color: #6c9041;\n}\n.spanRequiredField[data-v-040840f1] {\n  color: #dc4c42;\n  font-size: 14px;\n}", ""]);
 
 // exports
 
@@ -11592,7 +11621,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 16px;\n  background-color: white;\n  transition: padding 0.4s ease;\n}\n.task-container[data-v-e9a53c20]:hover {\n  background-color: #f9f9f9;\n  cursor: pointer;\n}\n.task-container .labelCheckPrinted[data-v-e9a53c20] {\n  margin-bottom: 0;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 4px 10px;\n  color: white;\n  font-size: 14px;\n  border: solid 1px transparent;\n  border-radius: 5px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container input[type=checkbox][data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}\n.task-container .labelInputName[data-v-e9a53c20] {\n  margin-bottom: 0;\n  margin-top: 0.5rem;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.task-container[data-v-e9a53c20] {\n  border: solid 0.2px #a0a0a0;\n  border-radius: 5px;\n  margin: 5px;\n  font-size: 16px;\n  background-color: white;\n  transition: padding 0.4s ease;\n}\n.task-container[data-v-e9a53c20]:hover {\n  background-color: #f9f9f9;\n  cursor: pointer;\n}\n.task-container .labelCheckPrinted[data-v-e9a53c20] {\n  margin-bottom: 0;\n}\n.task-container .task-button[data-v-e9a53c20] {\n  padding: 4px 10px;\n  color: white;\n  font-size: 14px;\n  border: solid 1px transparent;\n  border-radius: 5px;\n  margin: 5px;\n}\n.task-container .task-edit[data-v-e9a53c20] {\n  background-color: #00a9be;\n}\n.task-container .task-edit[data-v-e9a53c20]:hover, .task-container .task-edit[data-v-e9a53c20]:active {\n  background-color: #008798;\n}\n.task-container .task-delete[data-v-e9a53c20] {\n  background-color: #dc4c42;\n}\n.task-container .task-delete[data-v-e9a53c20]:hover, .task-container .task-delete[data-v-e9a53c20]:active {\n  background-color: #b03c34;\n}\n.task-container .task-cancel[data-v-e9a53c20] {\n  background-color: #a0a0a0;\n}\n.task-container .task-cancel[data-v-e9a53c20]:hover, .task-container .task-cancel[data-v-e9a53c20]:active {\n  background-color: #808080;\n}\n.task-container .task-save[data-v-e9a53c20] {\n  background-color: #87b452;\n}\n.task-container .task-save[data-v-e9a53c20]:hover, .task-container .task-save[data-v-e9a53c20]:active {\n  background-color: #6c9041;\n}\n.task-container .fa-calendar-alt[data-v-e9a53c20] {\n  content: \"\\F073\";\n  font-size: 25px;\n  color: #00a9be;\n}\n.task-container .fa-calendar-alt[data-v-e9a53c20]:hover, .task-container .fa-calendar-alt[data-v-e9a53c20]:active {\n  color: #008798;\n}\n.task-container input[type=checkbox][data-v-e9a53c20], .task-container .inputDateContent[data-v-e9a53c20] {\n  position: relative;\n  cursor: pointer;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  top: -3px;\n  left: 0;\n  border: 1px solid #a0a0a0;\n  border-radius: 2px;\n  background-color: white;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:before {\n  width: 20px;\n  height: 20px;\n  background-color: #87b452;\n  border: 2px solid #87b452;\n}\n.task-container input[type=checkbox][data-v-e9a53c20]:checked:after {\n  content: \"\\2713\";\n  display: block;\n  color: white;\n  font-size: 25px;\n  position: absolute;\n  top: -10px;\n  left: 1px;\n}\n.task-container .labelInput[data-v-e9a53c20] {\n  margin-bottom: 0;\n  margin-top: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -43557,7 +43586,7 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
-            _c("form", [
+            _c("form", { ref: "myForm" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-6 form-group" }, [
                   _c("label", { attrs: { for: "taskName" } }, [
@@ -43574,7 +43603,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { id: "taskName", placeholder: "Enter name" },
+                    attrs: {
+                      id: "taskName",
+                      placeholder: "Entrer un nom",
+                      required: ""
+                    },
                     domProps: { value: _vm.task.name },
                     on: {
                       input: function($event) {
@@ -43612,25 +43645,36 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _vm._m(1),
+          _c("div", { staticClass: "modal-footer col" }, [
+            _vm.buttonIsDisable
+              ? _c("div", { staticClass: "row  spanRequiredField" }, [
+                  _vm._v(
+                    '\n                    Le champs "nom" ne peux être vide\n                '
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "task-button task-save",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.addTask()
+            _c("div", { staticClass: "row " }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "task-button task-save",
+                  class: { disabled: _vm.buttonIsDisable },
+                  attrs: { type: "button", disabled: _vm.buttonIsDisable },
+                  on: {
+                    click: function($event) {
+                      return _vm.addTask()
+                    }
                   }
-                }
-              },
-              [
-                _c("i", { staticClass: "fas fa-check mr-1" }),
-                _vm._v(" Enregistrer\n                ")
-              ]
-            )
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check mr-1" }),
+                  _vm._v(" Enregistrer\n                ")
+                ]
+              )
+            ])
           ])
         ])
       ])
@@ -43885,10 +43929,7 @@ var render = function() {
                 _c("div", { staticClass: "col form-group" }, [
                   _c(
                     "label",
-                    {
-                      staticClass: "labelInputName",
-                      attrs: { for: "taskName" }
-                    },
+                    { staticClass: "labelInput", attrs: { for: "taskName" } },
                     [_vm._v("Nom : ")]
                   ),
                   _vm._v(" "),
@@ -43902,7 +43943,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { id: "taskName", placeholder: "Enter name" },
+                    attrs: {
+                      id: "taskName",
+                      placeholder: "Entrer un nom",
+                      required: ""
+                    },
                     domProps: { value: _vm.copyTask.name },
                     on: {
                       input: function($event) {
@@ -43912,17 +43957,58 @@ var render = function() {
                         _vm.$set(_vm.copyTask, "name", $event.target.value)
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                                Ce champs ne peut pas être vide\n                            "
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "col form-group" },
                   [
-                    _c("label", [_vm._v("Date d'échéance : ")]),
+                    _c("label", { staticClass: "labelInput" }, [
+                      _vm._v("Date d'échéance : ")
+                    ]),
                     _vm._v(" "),
                     _c("v-date-picker", {
                       attrs: { id: "datePicker" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "default",
+                            fn: function(ref) {
+                              var inputValue = ref.inputValue
+                              var inputEvents = ref.inputEvents
+                              return [
+                                _c(
+                                  "span",
+                                  _vm._g(
+                                    { staticClass: "inputDateContent" },
+                                    inputEvents
+                                  ),
+                                  [
+                                    _vm._v(
+                                      "\n                                        " +
+                                        _vm._s(_vm.printedDueDate) +
+                                        "\n                                        "
+                                    ),
+                                    _c("i", {
+                                      staticClass: "far fa-calendar-alt"
+                                    })
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        false,
+                        3805879796
+                      ),
                       model: {
                         value: _vm.copyTask.dueDate,
                         callback: function($$v) {

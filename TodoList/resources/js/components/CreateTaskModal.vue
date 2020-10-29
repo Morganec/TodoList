@@ -9,11 +9,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form ref="myForm" >
                         <div class="row">
                             <div class="col-6 form-group">
                                 <label for="taskName">Nom : </label>
-                                <input  v-model="task.name" class="form-control" id="taskName" placeholder="Enter name">
+                                <input  v-model="task.name" class="form-control" id="taskName" placeholder="Entrer un nom" required>
                             </div>
                         </div>
 
@@ -25,13 +25,18 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer ">
+                    <div class=" spanRequiredField" v-if="buttonIsDisable">
+                        Le champs "nom" ne peux être vide
+                    </div>
+                    <div class=" " >
                     <button data-dismiss="modal" type="button" class="task-button task-cancel">
                         <i class="fas fa-times mr-1"></i> Annuler
                     </button>
-                    <button @click="addTask()" type="button" class="task-button task-save">
+                    <button @click="addTask()" type="button" class="task-button task-save" :class="{'disabled':buttonIsDisable}"  :disabled="buttonIsDisable">
                         <i class="fas fa-check mr-1"></i> Enregistrer
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,25 +57,32 @@ export default {
                 isDone: false,
                 name: null,
                 dueDate: null
-            }
+            },
+            isNameEmpty: false
         }
     },
     computed: {
-
+        buttonIsDisable: function () {
+            if(!this.task.name) {
+                return true
+            }else {
+                return false
+            }
+        }
     },
     created() {
     },
     methods: {
         addTask() {
-            axios.post('/task/', this.task)
-                .then(resp => {
-                    bus.$emit('taskAdded', this.task)
-                    $('#createTaskModal').modal('hide')
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
+                axios.post('/task/', this.task)
+                    .then(resp => {
+                        bus.$emit('taskAdded', this.task)
+                        $('#createTaskModal').modal('hide')
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
     }
 }
 
@@ -89,10 +101,16 @@ export default {
         background-color: #808080;
     }
 }
-.task-save {
+.task-save:enabled {
     background-color: #87b452;
-    &:hover, &:active {
+    &:hover:enabled, &:active:enabled {
         background-color: #6c9041;
     }
+
+}
+
+.spanRequiredField {
+    color: #dc4c42;
+    font-size: 14px;
 }
 </style>

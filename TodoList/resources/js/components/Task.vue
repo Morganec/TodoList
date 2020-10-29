@@ -28,12 +28,23 @@
                                 <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheck' + copyTask.id"> <label :for="'isDoneCheck' + copyTask.id" class="ml-2">C'est terminé ! </label>
                             </div>
                             <div class="col form-group">
-                                <label for="taskName" class="labelInputName">Nom : </label>
-                                <input  v-model="copyTask.name" class="form-control" id="taskName" placeholder="Enter name">
+                                <label for="taskName" class="labelInput">Nom : </label>
+                                <input  v-model="copyTask.name" class="form-control" id="taskName" placeholder="Entrer un nom" required>
+                                <div class="invalid-feedback">
+                                    Ce champs ne peut pas être vide
+                                </div>
                             </div>
                             <div class="col form-group">
-                                <label>Date d'échéance : </label>
-                                <v-date-picker id="datePicker" v-model='copyTask.dueDate' />
+                                <label  class="labelInput">Date d'échéance : </label>
+                                <v-date-picker id="datePicker" v-model='copyTask.dueDate' >
+                                    <template v-slot="{ inputValue, inputEvents }">
+                                        <span class="inputDateContent" v-on="inputEvents">
+                                            {{printedDueDate}}
+                                            <i class='far fa-calendar-alt'></i>
+                                        </span>
+
+                                    </template>
+                                </v-date-picker>
                             </div>
                         </div>
                     </form>
@@ -80,7 +91,10 @@ export default {
         }
     },
     computed: {
-
+        printedDueDate: function () {
+            let taskDueDate = new Date(this.copyTask.dueDate)
+            return (taskDueDate.getDate()+"/"+(taskDueDate.getMonth()+1)+"/"+taskDueDate.getFullYear())
+        }
     },
     created() {
     },
@@ -104,7 +118,6 @@ export default {
                 dueDate: this.copyTask.dueDate,
                 isDone: this.copyTask.isDone
             }
-            console.log('taskObject',taskObject)
             axios.put('/task/'+this.copyTask.id,
                taskObject
                 )
@@ -178,8 +191,15 @@ export default {
             background-color: #6c9041;
         }
     }
-
-    input[type=checkbox] {
+    .fa-calendar-alt {
+        content: "\f073";
+        font-size: 25px;
+        color: #00a9be;
+        &:hover, &:active {
+            color: #008798;
+        }
+    }
+    input[type=checkbox], .inputDateContent  {
         position: relative;
         cursor: pointer;
     }
@@ -210,7 +230,7 @@ export default {
         top: -10px;
         left: 1px
     }
-    .labelInputName {
+    .labelInput {
         margin-bottom: 0;
         margin-top: 0.5rem;
     }
