@@ -28,8 +28,12 @@
                                 <input v-model="copyTask.isDone" type="checkbox" class="checkBox" :id="'isDoneCheck' + copyTask.id"> <label :for="'isDoneCheck' + copyTask.id" class="ml-2">C'est terminé ! </label>
                             </div>
                             <div class="col form-group">
-                                <label for="taskName" class="labelInputName">Name</label>
+                                <label for="taskName" class="labelInputName">Nom : </label>
                                 <input  v-model="copyTask.name" class="form-control" id="taskName" placeholder="Enter name">
+                            </div>
+                            <div class="col form-group">
+                                <label>Date d'échéance : </label>
+                                <v-date-picker id="datePicker" v-model='copyTask.dueDate' />
                             </div>
                         </div>
                     </form>
@@ -46,6 +50,8 @@
     </div>
 </template>
 <script>
+
+import {bus} from "../app";
 
 export default {
     name: 'Task',
@@ -103,7 +109,9 @@ export default {
                taskObject
                 )
                 .then(resp => {
-                    console.log(resp)
+                    if(this.copyTask.dueDate !== this.task.dueDate) {
+                        bus.$emit('taskDateUpdated', this.task, this.copyTask)
+                    }
                     this.isEdited= false
                 })
                 .catch(error => {
@@ -111,7 +119,7 @@ export default {
                 })
         },
         openEditTask(event) {
-            if (!(event.target.classList.contains('checkBox')) && !(event.target.classList.contains('labelCheckPrinted')) ) {
+            if (!(event.target.classList.contains('checkBox')) && !(event.target.classList.contains('labelCheckPrinted')) && !(event.target.classList.contains('task-delete')) ) {
                 this.isEdited= true
             }
         },
@@ -128,18 +136,22 @@ export default {
     border: solid 0.2px #a0a0a0;
     border-radius: 5px ;
     margin: 5px;
-    font-size: 18px;
+    font-size: 16px;
     background-color: white;
     transition: padding 0.4s ease;
     &:hover {
         background-color: #f9f9f9;
         cursor: pointer;
     }
+    .labelCheckPrinted{
+        margin-bottom: 0;
+    }
     .task-button {
-        padding: 6px;
+        padding: 4px 10px;
         color: white;
+        font-size: 14px;
         border: solid 1px transparent;
-        border-radius: 10px;
+        border-radius: 5px;
         margin: 5px;
     }
     .task-edit {

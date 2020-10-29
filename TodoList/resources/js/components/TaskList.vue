@@ -48,7 +48,7 @@
         <div class="row late" v-if="!(lateTaskList.length === 0)">
             <div class="col">
                 <div class="row">
-                    <span>En retard</span></div>
+                    <span><i class="fas fa-exclamation-triangle mr-1 "></i>Tâches en retard</span></div>
             <span class="row" v-if="lateTaskList.length === 0">Vous n'avez pas de tâche en retard</span>
             <div v-else class="row" v-for="task in lateTaskList" :key="task.id" >
                 <task-component :task="task"></task-component>
@@ -102,11 +102,14 @@ export default {
     },
     beforeDestroy() {
         bus.$off('taskAdded', this.addTaskInList)
+        bus.$off('taskDateUpdated', this.updateList)
     },
     created() {
         console.log(this.taskList)
         this.fillAllSortedTaskList()
         bus.$on('taskAdded', this.addTaskInList)
+        bus.$on('taskDateUpdated', this.updateList)
+
     },
     methods: {
         fillAllSortedTaskList() {
@@ -119,6 +122,55 @@ export default {
             this.$nextTick(()=> {
                 $('#createTaskModal').modal('show');
             })
+        },
+        updateList(oldTask, newTask){
+           /* let index = -1
+            if (!oldTask.dueDate) {
+                index = this.noDueDateTaskList.findIndex((task) => task.id === oldTask.id)
+                if (index !== -1) {
+                    this.noDueDateTaskList.slice(index, 1)
+                }
+            } else {
+                let dueDate = new Date(oldTask.dueDate)
+                dueDate = new Date(dueDate.getFullYear(),dueDate.getMonth() , dueDate.getDate())
+                let newDate = new Date()
+                let todayDate = new Date(newDate.getFullYear(),newDate.getMonth() , newDate.getDate())
+                let dateInOneWeek = newDate.setDate(newDate.getDate() + 7);
+                let dateInOneMonth = newDate.setDate(newDate.getMonth() + 1);
+                switch (true) {
+                    case (dueDate < todayDate) :
+                        index = this.lateTaskList.findIndex((task) => task.id === oldTask.id)
+                        if (index !== -1) {
+                            this.lateTaskList.slice(index, 1)
+                        }
+                        break;
+                    case (dueDate === todayDate) :
+                        index = this.todayTaskList.findIndex((task) => task.id === oldTask.id)
+                        if (index !== -1) {
+                            this.todayTaskList.slice(index, 1)
+                        }
+                        break;
+                    case (dueDate < dateInOneWeek):
+                        index = this.thisWeekTaskList.findIndex((task) => task.id === oldTask.id)
+                        if (index !== -1) {
+                            this.thisWeekTaskList.slice(index, 1)
+                        }
+                        break;
+                    case (dueDate < dateInOneMonth) :
+                        index = this.thisMonthTaskList.findIndex((task) => task.id === oldTask.id)
+                        if (index !== -1) {
+                            this.thisMonthTaskList.slice(index, 1)
+                        }
+                        break;
+                    default:
+                        index = this.dueLaterTaslList.findIndex((task) => task.id === oldTask.id)
+                        if (index !== -1) {
+                            this.dueLaterTaslList.slice(index, 1)
+                        }
+                        break;
+                }
+            }
+            this.addTaskInList(newTask)*/
         },
         addTaskInList(task) {
             if (this.isModalShowing) {
@@ -168,11 +220,15 @@ export default {
         witdth: 100%;
     }
 }
+.fa-exclamation-triangle {
+    color: #dc4c42
+}
 .task-button-create {
-    padding: 6px;
+    font-size: 14px;
+    padding: 4px 10px;
     color: white;
     border: solid 1px transparent;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 5px;
     background-color: #87b452;
     &:hover, &:active {

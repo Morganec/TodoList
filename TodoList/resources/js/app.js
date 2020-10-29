@@ -9,12 +9,14 @@ import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+import VCalendar from 'v-calendar';
+import { setupCalendar} from 'v-calendar'
 export const bus = new Vue();
 require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.use(VueRouter)
-
+Vue.use(VCalendar);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -34,7 +36,8 @@ Vue.component('task-list', require('./components/TaskList.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+setupCalendar({
+});
 
 
 const router = new VueRouter({

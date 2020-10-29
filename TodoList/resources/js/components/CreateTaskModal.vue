@@ -12,8 +12,15 @@
                     <form>
                         <div class="row">
                             <div class="col-6 form-group">
-                                <label for="taskName">Name</label>
+                                <label for="taskName">Nom : </label>
                                 <input  v-model="task.name" class="form-control" id="taskName" placeholder="Enter name">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <label>Date d'échéance : </label>
+                                <v-date-picker id="datePicker" v-model='task.dueDate' />
                             </div>
                         </div>
                     </form>
@@ -43,7 +50,8 @@ export default {
         return {
             task: {
                 isDone: false,
-                name: null
+                name: null,
+                dueDate: null
             }
         }
     },

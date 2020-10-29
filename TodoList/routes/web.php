@@ -36,6 +36,7 @@ $task = Task::where("id", $id)->update([
 Route::post('/task', function (Request $request) {
     $task = new Task;
     $task->name = $request->name;
+    $task->dueDate = $request->dueDate;
     $task->isDone = false;
     $task->save();
 
