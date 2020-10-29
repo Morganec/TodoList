@@ -101,7 +101,6 @@ export default {
         bus.$off('taskDateUpdated', this.updateList)
     },
     created() {
-        console.log(this.taskList)
         this.fillAllSortedTaskList()
         bus.$on('taskAdded', this.addTaskInList)
         bus.$on('taskDateUpdated', this.updateList)
